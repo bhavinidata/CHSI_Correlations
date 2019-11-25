@@ -1,1 +1,1 @@
-web: gunicorn CHSICorrelations.app:app
+web:gunicorn CHSICorrelations.app:app
