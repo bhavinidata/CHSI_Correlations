@@ -1,0 +1,1 @@
+FLASK_APP=CHSICorrelations/app.py flask run
