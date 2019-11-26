@@ -13,14 +13,14 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
-
 #################################################
 # Database Setup
 #################################################
 
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "") or "postgresql+psycopg2://postgres:changeme@localhost:5432/CHSI_db"
+# app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "") or "postgresql+psycopg2://postgres:changeme@localhost:5432/CHSI_db"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "") or "sqlite:///data/CleanedCHSIDataset/CHSIsqlite.sqlite"
+print(app.config["SQLALCHEMY_DATABASE_URI"])
 db = SQLAlchemy(app)
-
 
 # reflect an existing database into a new model
 Base = automap_base()
