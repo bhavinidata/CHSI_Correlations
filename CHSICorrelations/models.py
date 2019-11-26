@@ -40,7 +40,7 @@ class RiskfactorData(db.Model):
     prim_care_phys_rate = db.Column(db.Float)
     dentist_rate = db.Column(db.Float)
     community_health_center_ind = db.Column(db.Float)
-    __table_args__ = (ForeignKeyConstraint([county_code, state_code],
+    __table_args__ = (db.ForeignKeyConstraint([county_code, state_code],
                                            [Demographic_data.county_fips_code, Demographic_data.state_fips_code]),
                       {})
 
