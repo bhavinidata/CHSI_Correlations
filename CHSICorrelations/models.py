@@ -23,7 +23,7 @@ class DemographicData(db.Model):
     asian = db.Column(db.Float)
     hispanic = db.Column(db.Float)
     def __repr__(self):
-        return '<Demographic_data %r>' % (self.name)
+        return '<DemographicData %r>' % (self.name)
 
 class RiskfactorData(db.Model):
     __tablename__ = "riskfactor_data"
@@ -41,8 +41,8 @@ class RiskfactorData(db.Model):
     dentist_rate = db.Column(db.Float)
     community_health_center_ind = db.Column(db.Float)
     __table_args__ = (db.ForeignKeyConstraint([county_code, state_code],
-                                           [Demographic_data.county_fips_code, Demographic_data.state_fips_code]),
+                                           [DemographicData.county_fips_code, DemographicData.state_fips_code]),
                       {})
 
     def __repr__(self):
-        return '<Riskfactor_data %r>' % (self.name)
+        return '<RiskfactorData %r>' % (self.name)
