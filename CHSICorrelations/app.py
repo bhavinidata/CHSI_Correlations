@@ -18,9 +18,12 @@ app = Flask(__name__)
 #################################################
 
 # app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "") or "postgresql+psycopg2://postgres:changeme@localhost:5432/CHSI_db"
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "") or "sqlite:///data/CleanedCHSIDataset/CHSIsqlite.sqlite"
+# app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "") or "sqlite:///data/CleanedCHSIDataset/CHSIsqlite.sqlite"
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgres://wsbowxbgvnsmii:4d965ff9780107fd692861d081475b30afe4760f22851cdd837f66aa9702a69e@ec2-23-21-249-0.compute-1.amazonaws.com:5432/d7k1n87jldddg5"
 print(app.config["SQLALCHEMY_DATABASE_URI"])
 db = SQLAlchemy(app)
+
+from .models import Demographic_data, Riskfactor_data
 
 # reflect an existing database into a new model
 Base = automap_base()
