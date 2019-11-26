@@ -9,7 +9,7 @@ class DemographicData(db.Model):
     chsi_county_name = db.Column(db.String(255))
     chsi_state_abbr = db.Column(db.String(255))
     strata_id_number =  db.Column(db.Integer)     
-    strata_determining_factors = db.Column(String(255))
+    strata_determining_factors = db.Column(db.String(255))
     number_counties =  db.Column(db.Integer)     
     population_size =  db.Column(db.Integer)     
     poverty = db.Column(db.Float)
