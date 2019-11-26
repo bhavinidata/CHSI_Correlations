@@ -15,7 +15,7 @@ class DemographicData(db.Model):
     poverty = db.Column(db.Float)
     age_19_under = db.Column(db.Float)
     age_19_64 = db.Column(db.Float)
-    age_65_84 = db.Column(db.loat)
+    age_65_84 = db.Column(db.Float)
     age_85_and_over = db.Column(db.Float)
     white = db.Column(db.Float)
     black = db.Column(db.Float)
