@@ -1,64 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <title></title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CHSI Correlations</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
-  <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
-  <!-- <link rel="stylesheet" href="assets/css/d3Style.css"> -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/d3Style.css') }}">
+    <script src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
+    <script>
+            function initViz() {
+            var containerDiv = document.getElementById("vizContainer"),
+                url = "http://public.tableau.com/views/CHSI_correlations_StateLevel/StateLevelAnalysis_1"
+                options = {
+                    hideTabs: true,
+                    onFirstInteractive: function () {
+                        console.log("Run this code when the viz has finished loading.");
+                    }
+                };
+    
+            var viz = new tableau.Viz(containerDiv, url, options);
+            var containerDiv = document.getElementById("vizContainer1"),
+                url = "http://public.tableau.com/views/CHSI_correlations_CoutyLevel/CountyLevelAnalysis_1"
+                options = {
+                    hideTabs: true,
+                    onFirstInteractive: function () {
+                        console.log("Run this code when the viz has finished loading.");
+                    }
+                };
+    
+            var viz = new tableau.Viz(containerDiv, url, options);
+            // Create a viz object and embed it in the container div.
+        }
+    
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/d3Style.css') }}">
 </head>
+<body onload="initViz();">
 
-<body>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-md-12">
-        <h1 style = "text-align: center;">CHSI Correlations</h1>
-      </div>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-xs-12  col-md-9  col-lg-6">
-            <div class="state_graph" style = "text-align: center;"><h3> State Level Analysis</h3></div>
-            <div id="scatter-state">
-            <!-- append state level chart here. -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+            <p class="navbar-text">CHSI Correlations</p>
             </div>
         </div>
-        <div class="col-xs-12  col-md-9 col-lg-6">
-                <div class="county_graph" style = "text-align: center;"><h3> County Level Analysis</h3></div>
-            <div id="scatter-county">
-            <!-- append county level chart here. -->   
+    </nav>
+    <div class="padding mx-5">
+        <div class="containter-fluid">
+            <div class="row text-center">
+                <h2>Community Health Status Indicators (CHSI) Correlations</h2>
             </div>
-        </div>
-    </div>
-    <br>
-    <div class="row"><p>Click on axis to see the relationship with various factors on state level.
-        <br>
-        Click on state bubble to see the county level analysis for chosen factors</p>
-    </div>
-    <div class="row">
-      <div class="col-xs-12  col-md-9">
-        <div class="article">
-          <h2>hello!</h2>
-        </div>
-      </div>
-    </div>
-  </div>
+            <div class="row">
+                <p class = "intro">
+                    CHSI is a collection of nationally available health indicators for counties, helping to present a “total picture” of local health. 
+                    It is a resource for monitoring and  analyzing community health status and its determinants at the state as well as county level.
+                    This dataset provides key health indicators for local communities and encourages dialogue about actions that can be taken to improve community health (e.g., obesity, heart disease, cancer).
+                </p>
+                <br>
+                <p class = "intro">
+                    From this large CHSI dataset, Demographic and Risk Factor data has been focused to find insights and patterns related to healthy lifestyles across the United States.
+                    Visualization shows the State Level and County Level Analysis. 
+                </p>
+                <br>
+                <p class="intro">
+                    Visualization shows Demographic and Risk factor data (Obesity, Smoker, High blood pressure, Diabetes, Few fruits and vegetables) by state as well as county. 
+                    User has an option to change the risk factor and visualize as well as it gives good 5 and worst 5 state for that risk factor.
+                </p>
+            </div>
+            <br>
+            <div class="row" id="vizContainer" style="width:1450px; height:850px;">
+                    <!-- <div class='tableauPlaceholder' id='viz1575265861882' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;CH&#47;CHSI_story&#47;Story1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='CHSI_story&#47;Story1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;CH&#47;CHSI_story&#47;Story1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1575265861882');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='1016px';vizElement.style.height='991px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script> -->
+                <!-- <div id="vizContainer" style="width:800px; height:500px;"></div> -->
+            </div>
+            <br>
+            <div class="row" id="vizContainer1" style="width:1450px; height:850px;">
+                    <!-- <div class='tableauPlaceholder' id='viz1575265861882' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;CH&#47;CHSI_story&#47;Story1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='CHSI_story&#47;Story1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;CH&#47;CHSI_story&#47;Story1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1575265861882');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='1016px';vizElement.style.height='991px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script> -->
+                <!-- <div id="vizContainer" style="width:800px; height:500px;"></div> -->
+            </div>
+            <br>
+            <div>
+                <p class = "divider" style="text-align: center;">
+                    Correlations between different Riskfactors and People Health
+                </p>
+            </div>
+            <br>
+            <br>
 
-  <!-- Footer-->
-  <div id="footer">
-    <p>plots</p>
-  </div>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  <script src="https://d3js.org/d3.v5.min.js"></script>
-  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+            <div class="row">
+                <p class="intro">
+                    Here is the Correlations between various Risk factors with interactive axis.
+                    <br>
+                    Click on axis to see correlations with various risk factors at state level. 
+                    <br>
+                    Click on bubble to see the correlations with chosen risk factor at county level.
+                </p>
+            </div>
+            <br>
+            <div class="row">
+                    <div class="col-xs-12  col-md-9  col-lg-6">
+                        <div class="state_graph" style = "text-align: center;"><h3> State Level Analysis</h3></div>
+                        <div id="scatter-state">
+                        <!-- append state level chart here. -->
+                        </div>
+                    </div>
+                    <div class="col-xs-12  col-md-9 col-lg-6">
+                            <div class="county_graph" style = "text-align: center;"><h3> County Level Analysis</h3></div>
+                        <div id="scatter-county">
+                        <!-- append county level chart here. -->   
+                        </div>
+                    </div>
+                </div>
+            <br>
+        </div>
+    </div>
+    
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 
 </body>
-
+<footer class="d-flex justify-content-center mt-auto">
+    <div class="container-fluid f">
+        <div class="row">
+            <div class="col greenline">
+                <p>
+                </p>
+            </div>
+        </div>
+        <div class="row" style="height:50px;" >
+            <div class="col last">
+            <p class="text-center" style="font-weight: bold; background-color: #5b0e2a; color: white; font-size: 20px;">   
+                CHSI Correlations - Data Analysis and Visualization</p>   
+        </div>
+    </div>        
+</footer>
 </html>
