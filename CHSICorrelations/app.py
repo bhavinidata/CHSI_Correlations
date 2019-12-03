@@ -18,8 +18,6 @@ app = Flask(__name__)
 #################################################
 
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "") or "postgresql+psycopg2://postgres:changeme@localhost:5432/CHSI_db"
-# app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "") or "sqlite:///data/CleanedCHSIDataset/CHSIsqlite.sqlite"
-# app.config["SQLALCHEMY_DATABASE_URI"] = "postgres://wsbowxbgvnsmii:4d965ff9780107fd692861d081475b30afe4760f22851cdd837f66aa9702a69e@ec2-23-21-249-0.compute-1.amazonaws.com:5432/d7k1n87jldddg5"
 print(app.config["SQLALCHEMY_DATABASE_URI"])
 db = SQLAlchemy(app)
 
@@ -155,36 +153,14 @@ def riskfactors():
         Demographic_RiskFactorDatas = {}
         Demographic_RiskFactorDatas["state_fips_code"] = result["state_fips_code"]
         Demographic_RiskFactorDatas["chsi_state_name"] = result["chsi_state_name"]
-        # Demographic_RiskFactorDatas["county_fips_code"] = result[2]
-        # Demographic_RiskFactorDatas["chsi_county_name"] = result[3]
         Demographic_RiskFactorDatas["chsi_state_abbr"] = result["chsi_state_abbr"]
-        # Demographic_RiskFactorDatas["strata_id_number"] = result[5]
-        # Demographic_RiskFactorDatas["strata_determining_factors"] = result[6]
-        # Demographic_RiskFactorDatas["number_counties"] = result[7]
-        # Demographic_RiskFactorDatas["population_size"] = result[8]
         Demographic_RiskFactorDatas["poverty"] = result["poverty"]
-        # Demographic_RiskFactorDatas["age_19_under"] = result[10]
-        # Demographic_RiskFactorDatas["age_19_64"] = result[11]
-        # Demographic_RiskFactorDatas["age_65_84"] = result[12]
-        # Demographic_RiskFactorDatas["age_85_and_over"] = result[13]
-        # Demographic_RiskFactorDatas["white"] = result[14]
-        # Demographic_RiskFactorDatas["black"] = result[15]
-        # Demographic_RiskFactorDatas["native_american"] = result[16]
-        # Demographic_RiskFactorDatas["asian"] = result[17]
-        # Demographic_RiskFactorDatas["hispanic"] = result[18]
-        # Demographic_RiskFactorDatas["riskfactor_id"] = result[19]
-        # Demographic_RiskFactorDatas["state_code"] = result[20]
-        # Demographic_RiskFactorDatas["county_code"] = result[21]
         Demographic_RiskFactorDatas["no_exercise"] = result["no_exercise"]
         Demographic_RiskFactorDatas["few_fruit_veg"] = result["few_fruit_veg"]
         Demographic_RiskFactorDatas["obesity"] = result["obesity"]
         Demographic_RiskFactorDatas["high_blood_pres"] = result["high_blood_pres"]
-        # Demographic_RiskFactorDatas["smoker"] = result[25]
         Demographic_RiskFactorDatas["diabetes"] = result["diabetes"]
-        # Demographic_RiskFactorDatas["uninsured"] = result[27]
         Demographic_RiskFactorDatas["prim_care_phys_rate"] = result["prim_care_phys_rate"]
-        # Demographic_RiskFactorDatas["dentist_rate"] = result[29]
-        # Demographic_RiskFactorDatas["community_health_center_ind"] = result[30]
         
         stateg_demogr_riskfactor_data.append(Demographic_RiskFactorDatas)
 
@@ -280,67 +256,14 @@ def demo_riskfactor_countywise(state):
         Demographic_RiskFactorDatasByCounty["county_fips_code"] = result["county_fips_code"]
         Demographic_RiskFactorDatasByCounty["chsi_county_name"] = result["chsi_county_name"]
         Demographic_RiskFactorDatasByCounty["chsi_state_abbr"] = result["chsi_state_abbr"]
-        # Demographic_RiskFactorDatas["strata_id_number"] = result[5]
-        # Demographic_RiskFactorDatas["strata_determining_factors"] = result[6]
-        # Demographic_RiskFactorDatas["number_counties"] = result[7]
-        # Demographic_RiskFactorDatas["population_size"] = result[8]
         Demographic_RiskFactorDatasByCounty["poverty"] = result["poverty"]
-        # Demographic_RiskFactorDatas["age_19_under"] = result[10]
-        # Demographic_RiskFactorDatas["age_19_64"] = result[11]
-        # Demographic_RiskFactorDatas["age_65_84"] = result[12]
-        # Demographic_RiskFactorDatas["age_85_and_over"] = result[13]
-        # Demographic_RiskFactorDatas["white"] = result[14]
-        # Demographic_RiskFactorDatas["black"] = result[15]
-        # Demographic_RiskFactorDatas["native_american"] = result[16]
-        # Demographic_RiskFactorDatas["asian"] = result[17]
-        # Demographic_RiskFactorDatas["hispanic"] = result[18]
-        # Demographic_RiskFactorDatas["riskfactor_id"] = result[19]
-        # Demographic_RiskFactorDatas["state_code"] = result[20]
-        # Demographic_RiskFactorDatas["county_code"] = result[21]
         Demographic_RiskFactorDatasByCounty["no_exercise"] = result["no_exercise"]
         Demographic_RiskFactorDatasByCounty["few_fruit_veg"] = result["few_fruit_veg"]
         Demographic_RiskFactorDatasByCounty["obesity"] = result["obesity"]
         Demographic_RiskFactorDatasByCounty["high_blood_pres"] = result["high_blood_pres"]
-        # Demographic_RiskFactorDatas["smoker"] = result[25]
         Demographic_RiskFactorDatasByCounty["diabetes"] = result["diabetes"]
-        # Demographic_RiskFactorDatas["uninsured"] = result[27]
         Demographic_RiskFactorDatasByCounty["prim_care_phys_rate"] = result["prim_care_phys_rate"]
-        # Demographic_RiskFactorDatas["dentist_rate"] = result[29]
-        # Demographic_RiskFactorDatas["community_health_center_ind"] = result[30]
 
-        # Demographic_RiskFactorDatasByCounty["state_fips_code"] = result.demographic_data.state_fips_code
-        # Demographic_RiskFactorDatasByCounty["chsi_state_name"] = result.demographic_data.chsi_state_name
-        # Demographic_RiskFactorDatasByCounty["county_fips_code"] = result.demographic_data.county_fips_code
-        # Demographic_RiskFactorDatasByCounty["chsi_county_name"] = result.demographic_data.chsi_county_name
-        # Demographic_RiskFactorDatasByCounty["chsi_state_abbr"] = result.demographic_data.chsi_state_abbr
-        # # Demographic_RiskFactorDatas["strata_id_number"] = result[5]
-        # # Demographic_RiskFactorDatas["strata_determining_factors"] = result[6]
-        # # Demographic_RiskFactorDatas["number_counties"] = result[7]
-        # # Demographic_RiskFactorDatas["population_size"] = result[8]
-        # Demographic_RiskFactorDatasByCounty["poverty"] = result.demographic_data.poverty
-        # # Demographic_RiskFactorDatas["age_19_under"] = result[10]
-        # # Demographic_RiskFactorDatas["age_19_64"] = result[11]
-        # # Demographic_RiskFactorDatas["age_65_84"] = result[12]
-        # # Demographic_RiskFactorDatas["age_85_and_over"] = result[13]
-        # # Demographic_RiskFactorDatas["white"] = result[14]
-        # # Demographic_RiskFactorDatas["black"] = result[15]
-        # # Demographic_RiskFactorDatas["native_american"] = result[16]
-        # # Demographic_RiskFactorDatas["asian"] = result[17]
-        # # Demographic_RiskFactorDatas["hispanic"] = result[18]
-        # # Demographic_RiskFactorDatas["riskfactor_id"] = result[19]
-        # # Demographic_RiskFactorDatas["state_code"] = result[20]
-        # # Demographic_RiskFactorDatas["county_code"] = result[21]
-        # Demographic_RiskFactorDatasByCounty["no_exercise"] = result.riskfactor_data.no_exercise
-        # Demographic_RiskFactorDatasByCounty["few_fruit_veg"] = result.riskfactor_data.few_fruit_veg
-        # Demographic_RiskFactorDatasByCounty["obesity"] = result.riskfactor_data.obesity
-        # Demographic_RiskFactorDatasByCounty["high_blood_pres"] = result.riskfactor_data.high_blood_pres
-        # # Demographic_RiskFactorDatas["smoker"] = result[25]
-        # Demographic_RiskFactorDatasByCounty["diabetes"] = result.riskfactor_data.diabetes
-        # # Demographic_RiskFactorDatas["uninsured"] = result[27]
-        # Demographic_RiskFactorDatasByCounty["prim_care_phys_rate"] = result.riskfactor_data.prim_care_phys_rate
-        # # Demographic_RiskFactorDatas["dentist_rate"] = result[29]
-        # # Demographic_RiskFactorDatas["community_health_center_ind"] = result[30]
-        
         countyg_demogr_riskfactor_data.append(Demographic_RiskFactorDatasByCounty)
 
         print(countyg_demogr_riskfactor_data)
