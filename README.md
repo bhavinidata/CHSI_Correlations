@@ -39,7 +39,7 @@ Heroku deployed Site: http://bhavini-chsi-correlations.herokuapp.com/
 ### Some Insights
 * It seems Colorado and Utah are having less Obesity and Diabetes rate. While Missisipi and West Virginia are having higher Obesity and Diabetes rate.
 * From data, It seems there is not a correlation having less fruit and vegetable intake with Obesity and Diabetes.
-* While form the chart, it is clear that exercite correlates to Obesity and Diabetes very well.
+* While form the chart, it is clear that exercise correlates to Obesity and Diabetes very well.
 * Also poverty has correlations with High Blood Pressure.
 
 
